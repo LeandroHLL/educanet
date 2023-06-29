@@ -1,0 +1,10 @@
+trocar status do situacao-----------
+
+associar com tabela usuario
+
+pagina de user/back
+
+completar parte de sessão de usuario
+e puxar do banco
+
+formatação de data
