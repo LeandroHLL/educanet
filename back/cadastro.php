@@ -25,10 +25,32 @@ $sql = "INSERT INTO cadastro (username, password, email, age, phone_number, curs
         VALUES ('$username', '$password', '$email', '$age', '$phone_number', '$curso')";
 
 if ($conn->query($sql) === true) {
-    header("Location: ../pages/user.php");
+    // Executa a consulta SQL para obter os dados de autenticação e cod_curso
+    $query = "SELECT senha.autenticacao, curso.cod_curso
+              FROM senha
+              INNER JOIN turma ON turma.cod_turma = senha.cod_turma
+              INNER JOIN modulo ON modulo.cod_modulo = turma.cod_modulo
+              INNER JOIN curso ON curso.cod_curso = modulo.cod_curso
+              WHERE senha.situacao = 'DISPONIVEL' AND turma.cod_periodo_letivo = 7 AND curso.cod_curso = '$curso'";
+
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Atualiza a coluna 'autenticacao' na tabela 'cadastro' com o valor obtido da consulta SQL
+        $autenticacao = $row['autenticacao'];
+        $updateQuery = "UPDATE cadastro SET autenticacao = '$autenticacao' WHERE username = '$username'";
+        $conn->query($updateQuery);
+
+        header("Location: ../pages/user.php");
+    } else {
+        header("Location: ../login.php?error=1");
+    }
 } else {
     header("Location: ../login.php?error=1");
 }
 
 // Fecha a conexão com o banco de dados
 $conn->close();
+?>

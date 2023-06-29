@@ -1,4 +1,21 @@
+(pesquisa)
 select senha.autenticacao, curso.nome_curso from senha
+inner join turma on turma.cod_turma = senha.cod_turma
+inner join modulo on modulo.cod_modulo = turma.cod_modulo
+inner join curso on curso.cod_curso = modulo.cod_curso
+where senha.situacao = "DISPONIVEL" AND turma.cod_periodo_letivo = 7;
+
+(pesquisa2)
+
+select senha.autenticacao, curso.cod_curso from senha inner join turma on turma.cod_turma = senha.cod_turma inner join modulo on modulo.cod_modulo = turma.cod_modulo inner join curso on curso.cod_curso = modulo.cod_curso where senha.situacao = "DISPONIVEL" AND turma.cod_periodo_letivo = 7;
+(pesquisar senha)
+
+SELECT * FROM senha WHERE autenticacao = 'lhYGECIt';
+
+
+
+select senha.autenticacao, curso.cod_curso, curso.nome_curso, turma.cod_turma
+from senha
 inner join turma on turma.cod_turma = senha.cod_turma
 inner join modulo on modulo.cod_modulo = turma.cod_modulo
 inner join curso on curso.cod_curso = modulo.cod_curso
