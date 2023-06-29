@@ -67,46 +67,8 @@ $result = $conn->query($sql);
 
     <section class="section coming-soon" data-section="section3">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <!-- LOGAR -->
-                <div class="col-md-6">
-                    <div class="right-content">
-                        <div class="top-content">
-                            <h6>Faça login em sua conta</h6>
-                        </div>
-                        <?php
-                        // Verifica se há um erro na URL
-                        if (isset($_GET['error'])) {
-                            $error = $_GET['error'];
-
-                            if ($error == 1) {
-                                echo "<p style='color: red;'>Usuário ou senha inválidos!</p>";
-                            } else {
-                                echo "<p style='color: red;'>Ocorreu um erro no login.</p>";
-                            }
-                        }
-                        ?>
-                        <form id="login-form" action="back/sign.php" method="post">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <input name="username" type="text" class="form-control" id="username" placeholder="Usuário" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <button type="submit" id="login-submit" class="button">Logar</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 <!-- CADASTRO -->
                 <div class="col-md-6">
                     <div class="right-content">
