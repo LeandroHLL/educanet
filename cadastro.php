@@ -128,6 +128,15 @@ $result = $conn->query($sql);
                                         <button type="submit" id="registration-submit" class="button">Registrar</button>
                                     </fieldset>
                                 </div>
+                                <br>
+                                <br>
+                                <br>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <a href="login.php" class="button">Já possui cadastro? Faça login</a>
+                                    </fieldset>
+                                </div>
+
                             </div>
                         </form>
                     </div>
