@@ -8,3 +8,6 @@ completar parte de sessão de usuario
 e puxar do banco
 
 formatação de data
+
+filtrar cadastro por idade na tabela nome_faixa_etaria
+    (dentro da tela de user)
