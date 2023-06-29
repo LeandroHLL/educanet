@@ -39,10 +39,18 @@ if ($conn->query($sql) === true) {
         $row = $result->fetch_assoc();
 
         // Atualiza a coluna 'autenticacao' na tabela 'cadastro' com o valor obtido da consulta SQL
+
+       
+
         $autenticacao = $row['autenticacao'];
         $updateQuery = "UPDATE cadastro SET autenticacao = '$autenticacao' WHERE username = '$username'";
         $conn->query($updateQuery);
 
+        //trocar no banco de dados status de autenticacao
+
+        $updateSenhaQuery = "UPDATE senha SET situacao = 'UTILIZADA' WHERE autenticacao = '$autenticacao'";
+        $conn->query($updateSenhaQuery);
+        
         header("Location: ../pages/user.php");
     } else {
         header("Location: ../login.php?error=1");
