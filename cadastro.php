@@ -125,7 +125,7 @@ $result = $conn->query($sql);
 
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <button type="submit" id="registration-submit" class="button">Registrar</button>
+                                        <button type="submit" id="registration-submit" class="button">Cadastrar</button>
                                     </fieldset>
                                 </div>
                                 <br>

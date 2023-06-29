@@ -12,10 +12,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
-
-// Consulta os cursos disponíveis no banco de dados
-$sql = "SELECT cod_curso, nome_curso FROM curso";
-$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -66,8 +62,11 @@ $result = $conn->query($sql);
     </header>
 
     <section class="section coming-soon" data-section="section3">
+        <br>
+        <br>
+        <br>
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <!-- LOGAR -->
                 <div class="col-md-6">
                     <div class="right-content">
@@ -93,84 +92,39 @@ $result = $conn->query($sql);
                                         <input name="username" type="text" class="form-control" id="username" placeholder="Usuário" required="">
                                     </fieldset>
                                 </div>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                
                                 <div class="col-md-12">
                                     <fieldset>
                                         <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
                                     </fieldset>
                                 </div>
+                                <br>
+                                <br>
+                                <br>
                                 <div class="col-md-12">
                                     <fieldset>
                                         <button type="submit" id="login-submit" class="button">Logar</button>
                                     </fieldset>
                                 </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- CADASTRO -->
-                <div class="col-md-6">
-                    <div class="right-content">
-                        <div class="top-content">
-                            <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
-                        </div>
-                        <form id="registration-form" action="back/cadastro.php" method="post">
-                            <div class="row">
+                                <br>
+                                <br>
+                                <br>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <input name="username" type="text" class="form-control" id="username" placeholder="Usuário" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <input name="email" type="email" class="form-control" id="email" placeholder="Email" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <input name="age" type="number" class="form-control" id="age" placeholder="Idade" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="Número de telefone" required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <select name="curso" class="form-control" id="curso" required="">
-                                            <?php
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
-                                                    $idCurso = $row["cod_curso"];
-                                                    $nomeCurso = $row["nome_curso"];
-                                                    echo "<option value='$idCurso'>$nomeCurso</option>";
-                                                }
-                                            } else {
-                                                echo "<option value=''>Nenhum curso disponível</option>";
-                                            }
-
-                                            // Fecha a conexão com o banco de dados
-                                            $conn->close();
-                                            ?>
-                                        </select>
-                                    </fieldset>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <fieldset>
-                                        <button type="submit" id="registration-submit" class="button">Registrar</button>
+                                        <a href="cadastro.php" class="button">Já é cadastrado? Faça Login</a>
                                     </fieldset>
                                 </div>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
+            <!-- CADASTRO -->
+        </div>
         </div>
     </section>
 
