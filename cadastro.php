@@ -133,7 +133,7 @@ $result = $conn->query($sql);
                                 <br>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <a href="login.php" class="button">Já possui cadastro? Faça login</a>
+                                        <a href="login.php" class="button">Já possui cadastro? Faça login.</a>
                                     </fieldset>
                                 </div>
 

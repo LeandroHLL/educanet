@@ -115,7 +115,7 @@ if ($conn->connect_error) {
                                 <br>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <a href="cadastro.php" class="button">Já é cadastrado? Faça Login</a>
+                                        <a href="cadastro.php" class="button">Não é cadastrado? se cadastre.</a>
                                     </fieldset>
                                 </div>
                             </div>
