@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 
 // Obtém o nome do usuário da sessão
 $username = $_SESSION['username'];
-
+//Curso selecionado com base no nome do usuário da sessão
 $selectedCursoNome = '';
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
