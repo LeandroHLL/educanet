@@ -5,12 +5,13 @@ session_start();
 // Verificar se o usuário está logado
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     // Se o usuário não estiver logado, redirecionar para a página de login
-    header("Location: login.php");
+    header("Location: login2.php");
     exit();
 }
 
 // Obtém o nome do usuário da sessão
 $username = $_SESSION['username'];
+
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ $username = $_SESSION['username'];
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <title>EducaNet | Login</title>
+    <title>EducaNet | Página do candidato </title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Additional CSS Files -->
@@ -49,7 +50,11 @@ $username = $_SESSION['username'];
                     </ul>
                 </li>
                 <li><a href="index.html/#section4">Cursos</a></li>
-                <li><a href="#section3">Logar</a></li>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+                    <li><a href="logout.php">Logout</a></li> <!-- Botão de Logout -->
+                <?php else : ?>
+                    <li><a href="#section3">Logar</a></li> <!-- Botão de Logar -->
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
@@ -61,6 +66,10 @@ $username = $_SESSION['username'];
                 <div class="col-md-12">
                     <div class="right-content">
                         <div class="top-content">
+                            <h6>Usuário Logado:<p>Bem-vindo, <?php echo $username; ?>!</p>
+                            </h6>
+                            <h6>Usuário Logado:<p>Bem-vindo, <?php echo $username; ?>!</p>
+                            </h6>
                             <h6>Usuário Logado:<p>Bem-vindo, <?php echo $username; ?>!</p>
                             </h6>
                         </div>
