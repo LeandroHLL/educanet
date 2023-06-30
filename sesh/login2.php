@@ -33,7 +33,7 @@ function verificaLogin($conn, $username, $password)
         exit();
     } else {
         // Login inválido, redirecionar para a página de login com um erro
-        header("Location: login.php?error=1");
+        header("Location: login2.php?error=1");
         exit();
     }
 }

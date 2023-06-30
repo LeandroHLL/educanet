@@ -4,10 +4,12 @@ associar com tabela usuario
 
 pagina de user/back
 
-completar parte de sessão de usuario
+completar parte de sessão de usuario-------------
 e puxar do banco(alterar paginas de cadastro e login salvar sessao)
 
 formatação de data
 
 filtrar cadastro por idade na tabela nome_faixa_etaria
     (dentro da tela de user)
+
+mostrar usuario senha
