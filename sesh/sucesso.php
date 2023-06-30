@@ -110,7 +110,7 @@ if (isset($_SESSION['username'])) {
                             </h6>
                             <h6>Curso Escolhido:<p><?php echo $selectedCursoNome; ?>!</p>
                             </h6>
-                            <h6>Sua Senha:<p><?php echo (!empty($autenticacao) ? $autenticacao : 'Nenhuma senha disponível no momento'); ?>!</p>
+                            <h6>Sua Senha:<p style="color: <?php echo (!empty($autenticacao) ? 'inherit' : '#F29727'); ?>"><?php echo (!empty($autenticacao) ? $autenticacao : 'Nenhuma senha disponível no momento, breve abriremos novas turmas'); ?></p>
                             </h6>
 
                         </div>
