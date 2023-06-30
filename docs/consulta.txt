@@ -20,3 +20,9 @@ inner join turma on turma.cod_turma = senha.cod_turma
 inner join modulo on modulo.cod_modulo = turma.cod_modulo
 inner join curso on curso.cod_curso = modulo.cod_curso
 where senha.situacao = "DISPONIVEL" AND turma.cod_periodo_letivo = 7;
+
+//exibir cod curso e nome
+
+SELECT c.nome_curso
+FROM cadastro AS cad
+JOIN curso AS c ON cad.curso = c.cod_curso

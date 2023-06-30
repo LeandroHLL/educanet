@@ -9,9 +9,49 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit();
 }
 
+// Estabelecer conexão com o banco de dados
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "educanet";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar se a conexão foi estabelecida corretamente
+if ($conn->connect_error) {
+    die("Falha na conexão com o banco de dados: " . $conn->connect_error);
+}
+
 // Obtém o nome do usuário da sessão
 $username = $_SESSION['username'];
 
+$selectedCursoNome = '';
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+
+    $sqlCurso = "SELECT c.nome_curso
+                 FROM cadastro AS cad
+                 JOIN curso AS c ON cad.curso = c.cod_curso
+                 WHERE cad.username = '$username'";
+
+    $resultCurso = $conn->query($sqlCurso);
+
+    if ($resultCurso->num_rows > 0) {
+        $rowCurso = $resultCurso->fetch_assoc();
+        $selectedCursoNome = $rowCurso['nome_curso'];
+    }
+}
+
+// Obtém a autenticação do usuário logado na sessão
+$autenticacao = '';
+if (isset($_SESSION['username'])) {
+    $sqlAutenticacao = "SELECT autenticacao FROM cadastro WHERE username = '{$_SESSION['username']}'";
+    $resultAutenticacao = $conn->query($sqlAutenticacao);
+    if ($resultAutenticacao->num_rows > 0) {
+        $rowAutenticacao = $resultAutenticacao->fetch_assoc();
+        $autenticacao = $rowAutenticacao['autenticacao'];
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,9 +108,9 @@ $username = $_SESSION['username'];
                         <div class="top-content">
                             <h6>Usuário Logado<p>Bem-vindo, <?php echo $username; ?>!</p>
                             </h6>
-                            <h6>Curso Escolhido<p><?php echo $curso; ?>!</p>
+                            <h6>Curso Escolhido:<p><?php echo $selectedCursoNome; ?>!</p>
                             </h6>
-                            <h6>Sua Senha<p><?php echo $autenticacao; ?>!</p>
+                            <h6>Sua Senha:<p><?php echo $autenticacao; ?>!</p>
                             </h6>
                         </div>
                         <a href="logout.php">Sair</a> <!-- Botão de logout -->
