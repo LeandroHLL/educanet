@@ -66,11 +66,11 @@ $username = $_SESSION['username'];
                 <div class="col-md-12">
                     <div class="right-content">
                         <div class="top-content">
-                            <h6>Usuário Logado:<p>Bem-vindo, <?php echo $username; ?>!</p>
+                            <h6>Usuário Logado<p>Bem-vindo, <?php echo $username; ?>!</p>
                             </h6>
-                            <h6>Usuário Logado:<p>Bem-vindo, <?php echo $username; ?>!</p>
+                            <h6>Curso Escolhido<p><?php echo $curso; ?>!</p>
                             </h6>
-                            <h6>Usuário Logado:<p>Bem-vindo, <?php echo $username; ?>!</p>
+                            <h6>Sua Senha<p><?php echo $autenticacao; ?>!</p>
                             </h6>
                         </div>
                         <a href="logout.php">Sair</a> <!-- Botão de logout -->
