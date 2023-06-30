@@ -5,7 +5,7 @@ associar com tabela usuario
 pagina de user/back
 
 completar parte de sessão de usuario
-e puxar do banco
+e puxar do banco(alterar paginas de cadastro e login salvar sessao)
 
 formatação de data
 
