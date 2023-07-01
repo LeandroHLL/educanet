@@ -21,10 +21,10 @@ $result = $conn->query($sql);
 
 if ($result->num_rows == 1) {
     // O usuário foi encontrado
-    header("Location: ../pages/user.php");
+    header("Location: ../sesh/sucesso.php");
 } else {
     // O usuário não foi encontrado, redireciona para a página de login com mensagem de erro
-    header("Location: ../login.php?error=1");
+    header("Location: ../sign/login.php?error=1");
     exit();
 }
 

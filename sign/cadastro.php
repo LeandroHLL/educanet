@@ -1,5 +1,8 @@
 <!-- php -->
 <?php
+
+session_start();
+
 // Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
@@ -12,6 +15,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
+
+// Consulta os cursos disponíveis no banco de dados
+$sql = "SELECT cod_curso, nome_curso FROM curso";
+$result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
@@ -25,16 +32,16 @@ if ($conn->connect_error) {
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>EducaNet | Login</title>
+    <title>EducaNet | Cadastro</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/templatemo-grad-school.css">
+    <link rel="stylesheet" href="../assets/css/owl.css">
+    <link rel="stylesheet" href="../assets/css/lightbox.css">
 </head>
 
 <body>
@@ -43,71 +50,85 @@ if ($conn->connect_error) {
     <!--header-->
     <header class="main-header clearfix" role="header">
         <div class="logo">
-            <a href="index.html"><em>Educa</em> Net</a>
+            <a href="../index.html"><em>Educa</em> Net</a>
         </div>
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
-                <li><a href="index.html">Home</a></li>
-                <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
+                <li><a href="../index.html">Home</a></li>
+                <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
-                        <li><a href="index.html#section2">Quem Somos?</a></li>
-                        <li><a href="index.html#section3">Cadastre-se</a></li>
+                        <li><a href="../index.html#section2">Quem Somos?</a></li>
+                        <li><a href="../index.html#section3">Cadastre-se</a></li>
                     </ul>
                 </li>
-                <li><a href="index.html/#section4">Cursos</a></li>
-                <li><a href="#section3">Logar</a></li>
+                <li><a href="../index.html/#section4">Cursos</a></li>
+                <li><a href="../#section3">Logar</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="section coming-soon" data-section="section3">
-        <br>
-        <br>
-        <br>
         <div class="container">
             <div class="row justify-content-center">
                 <!-- LOGAR -->
+                <!-- CADASTRO -->
                 <div class="col-md-6">
                     <div class="right-content">
                         <div class="top-content">
-                            <h6>Faça login em sua conta</h6>
+                            <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
                         </div>
-                        <?php
-                        // Verifica se há um erro na URL
-                        if (isset($_GET['error'])) {
-                            $error = $_GET['error'];
-
-                            if ($error == 1) {
-                                echo "<p style='color: red;'>Usuário ou senha inválidos!</p>";
-                            } else {
-                                echo "<p style='color: red;'>Ocorreu um erro no login.</p>";
-                            }
-                        }
-                        ?>
-                        <form id="login-form" action="back/sign.php" method="post">
+                        <form id="registration-form" action="back/cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <fieldset>
                                         <input name="username" type="text" class="form-control" id="username" placeholder="Usuário" required="">
                                     </fieldset>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                
                                 <div class="col-md-12">
                                     <fieldset>
                                         <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
                                     </fieldset>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <button type="submit" id="login-submit" class="button">Logar</button>
+                                        <input name="email" type="email" class="form-control" id="email" placeholder="Email" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input name="age" type="number" class="form-control" id="age" placeholder="Idade" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input name="phone-number" type="text" class="form-control" id="phone-number" placeholder="Número de telefone" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="curso" class="form-control" id="curso" required="">
+                                            <?php
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    $idCurso = $row["cod_curso"];
+                                                    $nomeCurso = $row["nome_curso"];
+                                                    echo "<option value='$idCurso'>$nomeCurso</option>";
+                                                }
+                                            } else {
+                                                echo "<option value=''>Nenhum curso disponível</option>";
+                                            }
+
+                                            // Fecha a conexão com o banco de dados
+                                            $conn->close();
+                                            ?>
+                                        </select>
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <button type="submit" id="registration-submit" class="button">Cadastrar</button>
                                     </fieldset>
                                 </div>
                                 <br>
@@ -115,16 +136,15 @@ if ($conn->connect_error) {
                                 <br>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <a href="cadastro.php" class="button">Não é cadastrado? se cadastre.</a>
+                                        <a href="login.php" class="button">Já possui cadastro? Faça login.</a>
                                     </fieldset>
                                 </div>
+
                             </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
-            <!-- CADASTRO -->
-        </div>
         </div>
     </section>
 

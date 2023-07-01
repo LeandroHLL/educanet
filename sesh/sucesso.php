@@ -5,7 +5,7 @@ session_start();
 // Verificar se o usuário está logado
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     // Se o usuário não estiver logado, redirecionar para a página de login
-    header("Location: login2.php");
+    header("Location: ../sign/login.php");
     exit();
 }
 
@@ -93,7 +93,7 @@ if (isset($_SESSION['username'])) {
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
                     <li><a href="logout.php">Logout</a></li> <!-- Botão de Logout -->
                 <?php else : ?>
-                    <li><a href="#section3">Logar</a></li> <!-- Botão de Logar -->
+                    <li><a href="../sesh/#section3">Logar</a></li> <!-- Botão de Logar -->
                 <?php endif; ?>
             </ul>
         </nav>
