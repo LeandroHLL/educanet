@@ -54,7 +54,7 @@ if (!empty($selectedCurso)) {
     <!--header-->
     <header class="main-header clearfix" role="header">
         <div class="logo">
-            <a href="index.html"><em>Educa</em> Net</a>
+            <a href="../index.html"><em>Educa</em> Net</a>
         </div>
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
@@ -76,18 +76,35 @@ if (!empty($selectedCurso)) {
         <div class="container">
             <div class="row">
                 <!-- CURSO ESCOLHIDO -->
-                <div class="col-md-12">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br><div class="col-md-12">
                     <div class="right-content">
                         <div class="top-content">
-                            <h6>Curso Escolhido:</h6>
+                            <h6>Cadastrado com sucesso<br>
+                                <a href="../sign/login.php" class="button">Volte a fazer Login para iniciar sessão.</a>
+                            </h6>
                         </div>
-                        <?php if (!empty($selectedCursoNome)) : ?>
-                            <p>O curso selecionado é: <?php echo $selectedCursoNome; ?></p>
-                        <?php else : ?>
-                            <p>Nenhum curso selecionado.</p>
-                        <?php endif; ?>
                     </div>
                 </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                
             </div>
         </div>
     </section>

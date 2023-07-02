@@ -78,6 +78,21 @@ $result = $conn->query($sql);
                         <div class="top-content">
                             <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
                         </div>
+                        <?php
+                        try {
+                            // Código para inserir o registro no banco de dados
+                        } catch (mysqli_sql_exception $e) {
+                            $errorMessage = $e->getMessage();
+
+                            if (strpos($errorMessage, "Duplicate entry") !== false && strpos($errorMessage, "email") !== false) {
+                                // Exibir a mensagem de e-mail já utilizado na tela de cadastro
+                                echo "O e-mail informado já está sendo utilizado. Por favor, escolha outro e-mail.";
+                            } else {
+                                // Outra exceção ocorreu, exibir mensagem genérica de erro
+                                echo "Ocorreu um erro durante o cadastro. Por favor, tente novamente mais tarde.";
+                            }
+                        }
+                        ?>  
                         <form id="registration-form" action="../back/cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
