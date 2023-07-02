@@ -78,7 +78,7 @@ $result = $conn->query($sql);
                         <div class="top-content">
                             <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
                         </div>
-                        <form id="registration-form" action="back/cadastro.php" method="post">
+                        <form id="registration-form" action="../back/cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <fieldset>
