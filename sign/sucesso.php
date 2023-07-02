@@ -65,7 +65,7 @@ if (isset($_SESSION['username'])) {
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <title>EducaNet | Página do candidato </title>
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="../assets/css/fontawesome.css">
     <link rel="stylesheet" href="../assets/css/templatemo-grad-school.css">
@@ -85,6 +85,9 @@ if (isset($_SESSION['username'])) {
                 <style>
                     .ola {
                         color: white
+                    }
+                    .username{
+                        color:#F29727
                     }
                 </style>
                 <?php if (isset($username)) : ?>
@@ -146,6 +149,8 @@ if (isset($_SESSION['username'])) {
                                     cursor: pointer;
                                 }
                             </style>
+                            <br>
+                            <br>
                         </div>
                         <a href="logout.php" class="red-button">Sair</a> <!-- Botão de logout -->
                     </div>
