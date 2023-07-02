@@ -30,7 +30,7 @@ if (isset($_SESSION['username'])) {
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <title>EducaNet | Cadastrado</title>
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="../assets/css/fontawesome.css">
     <link rel="stylesheet" href="../assets/css/templatemo-grad-school.css">
@@ -60,14 +60,14 @@ if (isset($_SESSION['username'])) {
                         </li>
                     </a>
                 <?php endif; ?>
-                <li><a href="index.html">Home</a></li>
-                <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
+                <li><a href="../index.html">Home</a></li>
+                <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
-                        <li><a href="index.html#section2">Quem Somos?</a></li>
-                        <li><a href="index.html#section3">Cadastre-se</a></li>
+                        <li><a href="../index.html#section2">Quem Somos?</a></li>
+                        <li><a href="../index.html#section3">Cadastre-se</a></li>
                     </ul>
                 </li>
-                <li><a href="index.html/#section4">Cursos</a></li>
+                <li><a href="../index.html/#section4">Cursos</a></li>
             </ul>
         </nav>
     </header>

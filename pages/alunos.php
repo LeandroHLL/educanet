@@ -16,6 +16,11 @@ if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
 
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    header("Location: ../sign/login.php");
+}
 // EU VOU ME MATAR ESSE SABADO :D
 $sql1 = "SELECT cod_escolaridade, nome_escolaridade FROM escolaridade";
 $result1 = $conn->query($sql1);
@@ -61,6 +66,22 @@ $result3 = $conn->query($sql3);
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
+                <style>
+                    .ola {
+                        color: white
+                    }
+                    .username{
+                        color:#F29727
+                    }
+                </style>
+                <?php if (isset($username)) : ?>
+                    <a>
+                        <li class="username">
+                            <span class="ola">Olá </span>
+                            <?php echo $username; ?>
+                        </li>
+                    </a>
+                <?php endif; ?>
                 <li><a href="../index.html">Home</a></li>
                 <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
@@ -69,7 +90,6 @@ $result3 = $conn->query($sql3);
                     </ul>
                 </li>
                 <li><a href="../index.html/#section4">Cursos</a></li>
-                <li><a href="../#section3">Logar</a></li>
             </ul>
         </nav>
     </header>
