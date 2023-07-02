@@ -307,14 +307,14 @@ $result3 = $conn->query($sql3);
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <select name="portador_pne" id="portador_pne" class="form-control" required="">
+                                        <select name="portador_pne" id="portador_pne" class="form-control" required="" onchange="mostrarCampoQualPNE()">
                                             <option value="">Portador Pne?</option>
                                             <option value="Sim">Sim</option>
                                             <option value="Não">Não</option>
                                         </select>
                                     </fieldset><br>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="campo_qual_pne" style="display: none;">
                                     <fieldset>
                                         <input name="qual_pne" type="text" class="form-control" id="qual_pne" placeholder="Qual Pne" required="">
                                     </fieldset>
@@ -406,6 +406,17 @@ $result3 = $conn->query($sql3);
                 campoQualAlergia.style.visibility = "visible";
             } else {
                 campoQualAlergia.style.visibility = "hidden";
+            }
+        }
+
+        function mostrarCampoQualPNE() {
+            var portadorPNE = document.getElementById("portador_pne").value;
+            var campoQualPNE = document.getElementById("campo_qual_pne");
+
+            if (portadorPNE === "Sim") {
+                campoQualPNE.style.display = "block";
+            } else {
+                campoQualPNE.style.display = "none";
             }
         }
     </script>
