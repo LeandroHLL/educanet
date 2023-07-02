@@ -1,5 +1,7 @@
-<!-- php -->
 <?php
+// Iniciar sessão
+session_start();
+
 // Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
@@ -11,6 +13,38 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Verifica se a conexão foi estabelecida corretamente
 if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
+}
+
+// Função para verificar o login
+function verificaLogin($conn, $username, $password)
+{
+    // Consulta SQL para verificar o usuário e a senha no banco de dados
+    $sql = "SELECT * FROM cadastro WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows == 1) {
+        // Login bem-sucedido, definir variáveis de sessão
+        $row = $result->fetch_assoc();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $row['username'];
+
+        // Redirecionar para a página de sucesso após o login
+        header("Location: sucesso.php");
+        exit();
+    } else {
+        // Login inválido, redirecionar para a página de login com um erro
+        header("Location: login.php?error=1");
+        exit();
+    }
+}
+
+// Verificar se o formulário de login foi enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Chamar a função de verificação de login
+    verificaLogin($conn, $username, $password);
 }
 ?>
 
@@ -49,14 +83,14 @@ if ($conn->connect_error) {
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
                 <li><a href="../index.html">Home</a></li>
-                <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
+                <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
-                        <li><a href="../index.html#section2">Quem Somos?</a></li>
-                        <li><a href="../index.html#section3">Cadastre-se</a></li>
+                        <li><a href="index.html#section2">Quem Somos?</a></li>
+                        <li><a href="index.html#section3">Cadastre-se</a></li>
                     </ul>
                 </li>
-                <li><a href="../index.html/#section4">Cursos</a></li>
-                <li><a href="../#section3">Logar</a></li>
+                <li><a href="index.html/#section4">Cursos</a></li>
+                <li><a href="#section3">Logar</a></li>
             </ul>
         </nav>
     </header>
@@ -85,7 +119,7 @@ if ($conn->connect_error) {
                             }
                         }
                         ?>
-                        <form id="login-form" action="../back/sign.php" method="post">
+                        <form id="login-form" action="" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <fieldset>
@@ -96,7 +130,7 @@ if ($conn->connect_error) {
                                 <br>
                                 <br>
                                 <br>
-                                
+
                                 <div class="col-md-12">
                                     <fieldset>
                                         <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
@@ -143,16 +177,16 @@ if ($conn->connect_error) {
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/js/isotope.min.js"></script>
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/lightbox.js"></script>
-    <script src="assets/js/tabs.js"></script>
-    <script src="assets/js/video.js"></script>
-    <script src="assets/js/slick-slider.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="../assets/js/isotope.min.js"></script>
+    <script src="../assets/js/owl-carousel.js"></script>
+    <script src="../assets/js/lightbox.js"></script>
+    <script src="../assets/js/tabs.js"></script>
+    <script src="../assets/js/video.js"></script>
+    <script src="../assets/js/slick-slider.js"></script>
+    <script src="../assets/js/custom.js"></script>
     <script>
         //according to loftblog tut
         $('.nav li:first').addClass('active');

@@ -77,12 +77,12 @@ if (isset($_SESSION['username'])) {
     <!--header-->
     <header class="main-header clearfix" role="header">
         <div class="logo">
-            <a href="index.html"><em>Educa</em> Net</a>
+            <a href="../index.html"><em>Educa</em> Net</a>
         </div>
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="../index.html">Home</a></li>
                 <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
                         <li><a href="index.html#section2">Quem Somos?</a></li>
@@ -106,16 +106,32 @@ if (isset($_SESSION['username'])) {
                 <div class="col-md-12">
                     <div class="right-content">
                         <div class="top-content">
+                            <style>
+                                .cor-V{color:#F29727}
+                            </style>
                             <!-- Exibição para usuario informações sql e de sessão -->
-                            <h6>Usuário Logado<p>Bem-vindo, <?php echo $username; ?>!</p>
+                            <h6>Usuário Logado<p class="cor-V"> <?php echo $username; ?></p>
                             </h6>
-                            <h6>Curso Escolhido:<p><?php echo $selectedCursoNome; ?>!</p>
+                            <h6>Curso Escolhido:<p><?php echo $selectedCursoNome; ?></p>
                             </h6>
                             <h6>Sua Senha:<p style="color: <?php echo (!empty($autenticacao) ? 'inherit' : '#F29727'); ?>"><?php echo (!empty($autenticacao) ? $autenticacao : 'Nenhuma senha disponível no momento, breve abriremos novas turmas'); ?></p>
                             </h6>
-
+                            <style>
+                                .red-button {
+                                    background-color: red;
+                                    color: white;
+                                    padding: 10px 20px;
+                                    border: none;
+                                    text-align: center;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    border-radius: 4px;
+                                    text-decoration: none;
+                                    cursor: pointer;
+                                }
+                            </style>
                         </div>
-                        <a href="logout.php">Sair</a> <!-- Botão de logout -->
+                        <a href="logout.php" class="red-button">Sair</a> <!-- Botão de logout -->
                     </div>
                 </div>
             </div>
