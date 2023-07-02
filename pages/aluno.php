@@ -321,14 +321,14 @@ $result3 = $conn->query($sql3);
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <select name="medicacao_controlada" id="medicacao_controlada" class="form-control" required="">
-                                            <option value="">Medicacao Controlada?</option>
+                                        <select name="medicacao_controlada" id="medicacao_controlada" class="form-control" required="" onchange="mostrarCampoQualMedicacao()">
+                                            <option value="">Medicação Controlada?</option>
                                             <option value="Sim">Sim</option>
                                             <option value="Não">Não</option>
                                         </select>
                                     </fieldset><br>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="campo_qual_medicacao" style="display: none;">
                                     <fieldset>
                                         <input name="qual_medicacao" type="text" class="form-control" id="qual_medicacao" placeholder="Qual Medicação?" required="">
                                     </fieldset>
@@ -417,6 +417,17 @@ $result3 = $conn->query($sql3);
                 campoQualPNE.style.display = "block";
             } else {
                 campoQualPNE.style.display = "none";
+            }
+        }
+
+        function mostrarCampoQualMedicacao() {
+            var medicacaoControlada = document.getElementById("medicacao_controlada").value;
+            var campoQualMedicacao = document.getElementById("campo_qual_medicacao");
+
+            if (medicacaoControlada === "Sim") {
+                campoQualMedicacao.style.display = "block";
+            } else {
+                campoQualMedicacao.style.display = "none";
             }
         }
     </script>
