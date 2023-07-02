@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";

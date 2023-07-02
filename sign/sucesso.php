@@ -82,6 +82,19 @@ if (isset($_SESSION['username'])) {
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
+                <style>
+                    .ola {
+                        color: white
+                    }
+                </style>
+                <?php if (isset($username)) : ?>
+                    <a>
+                        <li class="username">
+                            <span class="ola">Olá </span>
+                            <?php echo $username; ?>
+                        </li>
+                    </a>
+                <?php endif; ?>
                 <li><a href="../index.html">Home</a></li>
                 <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
@@ -113,7 +126,7 @@ if (isset($_SESSION['username'])) {
                             </style>
                             <!-- Exibição para usuario informações sql e de sessão -->
                             <h6>Usuário Logado:<p class="cor-V"> <?php echo $username; ?></p>
-                                    <a href="../pages/aluno.php" class="button">Continue seu Cadastro</a>
+                                <a href="../pages/aluno.php" class="button">Continue seu Cadastro</a>
                             </h6>
                             <h6>Curso Escolhido:<p class="cor-V"><?php echo $selectedCursoNome; ?></p>
                             </h6>
