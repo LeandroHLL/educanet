@@ -49,7 +49,7 @@ if(isset($_SESSION['username'])) {
     <!--header-->
     <header class="main-header clearfix" role="header">
         <div class="logo">
-            <a href="index.html"><em>Educa</em> Net</a>
+            <a href="../index.html"><em>Educa</em> Net</a>
         </div>
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
@@ -75,7 +75,6 @@ if(isset($_SESSION['username'])) {
                     </ul>
                 </li>
                 <li><a href="index.html/#section4">Cursos</a></li>
-                <li><a href="#section3">Logar</a></li>
             </ul>
         </nav>
     </header>
