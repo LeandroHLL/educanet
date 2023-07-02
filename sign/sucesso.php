@@ -107,10 +107,13 @@ if (isset($_SESSION['username'])) {
                     <div class="right-content">
                         <div class="top-content">
                             <style>
-                                .cor-V{color:#F29727}
+                                .cor-V {
+                                    color: #F29727
+                                }
                             </style>
                             <!-- Exibição para usuario informações sql e de sessão -->
                             <h6>Usuário Logado:<p class="cor-V"> <?php echo $username; ?></p>
+                                    <a href="../pages/aluno.php" class="button">Continue seu Cadastro</a>
                             </h6>
                             <h6>Curso Escolhido:<p class="cor-V"><?php echo $selectedCursoNome; ?></p>
                             </h6>
