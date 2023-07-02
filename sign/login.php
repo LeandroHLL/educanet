@@ -90,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ul>
                 </li>
                 <li><a href="index.html/#section4">Cursos</a></li>
-                <li><a href="#section3">Logar</a></li>
             </ul>
         </nav>
     </header>
