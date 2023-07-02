@@ -106,6 +106,7 @@ if (isset($_SESSION['username'])) {
                 <div class="col-md-12">
                     <div class="right-content">
                         <div class="top-content">
+                            <!-- Exibição para usuario informações sql e de sessão -->
                             <h6>Usuário Logado<p>Bem-vindo, <?php echo $username; ?>!</p>
                             </h6>
                             <h6>Curso Escolhido:<p><?php echo $selectedCursoNome; ?>!</p>
