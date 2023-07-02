@@ -120,7 +120,7 @@ $result3 = $conn->query($sql3);
                             }
                         }
                         ?>
-                        <form id="registration-form" action="" method="post">
+                        <form id="registration-form" action="../back/processar_cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <fieldset>
