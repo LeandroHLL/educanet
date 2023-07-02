@@ -16,9 +16,15 @@ if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
 
-// Consulta os cursos disponíveis no banco de dados
-$sql = "SELECT cod_escola, nome_escola FROM escola";
-$result = $conn->query($sql);
+// EU VOU ME MATAR ESSE SABADO :D
+$sql1 = "SELECT cod_escolaridade, nome_escolaridade FROM escolaridade";
+$result1 = $conn->query($sql1);
+
+$sql2 = "SELECT cod_bairro, nome_bairro FROM bairro";
+$result2 = $conn->query($sql2);
+
+$sql3 = "SELECT cod_escola, nome_escola FROM escola";
+$result3 = $conn->query($sql3);
 ?>
 
 <!DOCTYPE html>
@@ -178,27 +184,161 @@ $result = $conn->query($sql);
                                         </select>
                                     </fieldset><br>
                                 </div>
-
-
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <select name="curso" class="form-control" id="curso" required="">
+                                        <input name="serie" type="text" class="form-control" id="serie_escolar" placeholder="Serie Escolar" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="cod_escola" class="form-control" id="cod_escola" required="">
                                             <?php
-                                            if ($result->num_rows > 0) {
-                                                while ($row = $result->fetch_assoc()) {
+                                            if ($result3->num_rows > 0) {
+                                                while ($row = $result3->fetch_assoc()) {
                                                     $idEscola = $row["cod_escola"];
                                                     $nomeEscola = $row["nome_escola"];
                                                     echo "<option value='$idEscola'>$nomeEscola</option>";
                                                 }
                                             } else {
-                                                echo "<option value=''>Nenhum curso disponível</option>";
+                                                echo "<option value=''>Nenhum Escola disponível</option>";
+                                            }
+
+
+                                            ?>
+                                        </select>
+                                    </fieldset><br>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="cod_escolaridade" class="form-control" id="cod_escolaridade" required="">
+                                            <?php
+                                            if ($result1->num_rows > 0) {
+                                                while ($row = $result1->fetch_assoc()) {
+                                                    $idEscolaridade = $row["cod_escolaridade"];
+                                                    $nomeEscolaridade = $row["nome_escolaridade"];
+                                                    echo "<option value='$idEscolaridade'>$nomeEscolaridade</option>";
+                                                }
+                                            } else {
+                                                echo "<option value=''>Nenhum Escolaridade disponível</option>";
+                                            }
+
+
+                                            ?>
+                                        </select>
+                                    </fieldset><br>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="manequim" class="form-control" id="manequim" required="">
+                                            <option value="">Manequim</option>
+                                            <option value="PP">PP</option>
+                                            <option value="P">P</option>
+                                            <option value="M">M</option>
+                                            <option value="G">G</option>
+                                            <option value="GG">GG</option>
+                                            <option value="GGG">Thais Carla</option>
+                                        </select>
+                                    </fieldset><br>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input name="numero_calcado" type="number" class="form-control" id="numero_calcado" placeholder="Número do Calçado" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input type="text" name="endereco" id="endereco" class="form-control" placeholder="Endereço" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="cod_bairro" class="form-control" id="cod_bairro" required="">
+                                            <?php
+                                            if ($result2->num_rows > 0) {
+                                                while ($row = $result2->fetch_assoc()) {
+                                                    $idBairro = $row["cod_bairro"];
+                                                    $nomeBairro = $row["nome_bairro"];
+                                                    echo "<option value='$idBairro'>$nomeBairro</option>";
+                                                }
+                                            } else {
+                                                echo "<option value=''>Nenhum Bairro disponível</option>";
                                             }
 
                                             // Fecha a conexão com o banco de dados
                                             $conn->close();
                                             ?>
                                         </select>
+                                    </fieldset><br>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="possui_alergia" id="possui_alergia" class="form-control" required="">
+                                            <option value="">Possui Alergia?</option>
+                                            <option value="Sim">Sim</option>
+                                            <option value="Não">Não</option>
+                                        </select>
                                     </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset><br>
+                                        <input name="qual_alergia" type="text" class="form-control" id="qual_alergia" placeholder="Qual Alergia" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="portador_pne" id="portador_pne" class="form-control" required="">
+                                            <option value="">Portador Pne?</option>
+                                            <option value="Sim">Sim</option>
+                                            <option value="Não">Não</option>
+                                        </select>
+                                    </fieldset><br>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input name="qual_pne" type="text" class="form-control" id="qual_pne" placeholder="Qual Pne" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="medicacao_controlada" id="medicacao_controlada" class="form-control" required="">
+                                            <option value="">Medicacao Controlada?</option>
+                                            <option value="Sim">Sim</option>
+                                            <option value="Não">Não</option>
+                                        </select>
+                                    </fieldset><br>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input name="qual_medicacao" type="text" class="form-control" id="qual_medicacao" placeholder="Qual Medicação?" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="possui_bolsa_familia" id="possui_bolsa_familia" class="form-control" required="">
+                                            <option value="">Possui Bolsa Familia?</option>
+                                            <option value="Sim">Sim</option>
+                                            <option value="Não">Não</option>
+                                        </select>
+                                    </fieldset><br>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input name="numero_bolsa_familia" type="number" class="form-control" id="numero_bolsa_familia" placeholder="Número do Bolsa Familia" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <input name="numero_cnis" type="number" class="form-control" id="numero_cnis" placeholder="Número do Cnis" required="">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                    <fieldset>
+                                        <select name="renda_familiar" id="renda_familiar" class="form-control" required="">
+                                            <option value="">Renda Familiar</option>
+                                            <option value="1 SALÁRIO MÍNIMO">1 SALÁRIO MÍNIMO</option>
+                                            <option value="ENTRE 1 À 3 SALÁRIOS MÍNIMOS">ENTRE 1 À 3 SALÁRIOS MÍNIMOS</option>
+                                        </select>
+                                    </fieldset><br>
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
