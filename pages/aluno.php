@@ -335,16 +335,16 @@ $result3 = $conn->query($sql3);
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <select name="possui_bolsa_familia" id="possui_bolsa_familia" class="form-control" required="">
-                                            <option value="">Possui Bolsa Familia?</option>
+                                        <select name="possui_bolsa_familia" id="possui_bolsa_familia" class="form-control" required="" onchange="mostrarCampoNumeroBolsaFamilia()">
+                                            <option value="">Possui Bolsa Família?</option>
                                             <option value="Sim">Sim</option>
                                             <option value="Não">Não</option>
                                         </select>
                                     </fieldset><br>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="campo_numero_bolsa_familia" style="display: none;">
                                     <fieldset>
-                                        <input name="numero_bolsa_familia" type="number" class="form-control" id="numero_bolsa_familia" placeholder="Número do Bolsa Familia" required="">
+                                        <input name="numero_bolsa_familia" type="number" class="form-control" id="numero_bolsa_familia" placeholder="Número do Bolsa Família" required="">
                                     </fieldset>
                                 </div>
                                 <div class="col-md-12">
@@ -428,6 +428,17 @@ $result3 = $conn->query($sql3);
                 campoQualMedicacao.style.display = "block";
             } else {
                 campoQualMedicacao.style.display = "none";
+            }
+        }
+
+        function mostrarCampoNumeroBolsaFamilia() {
+            var possuiBolsaFamilia = document.getElementById("possui_bolsa_familia").value;
+            var campoNumeroBolsaFamilia = document.getElementById("campo_numero_bolsa_familia");
+
+            if (possuiBolsaFamilia === "Sim") {
+                campoNumeroBolsaFamilia.style.display = "block";
+            } else {
+                campoNumeroBolsaFamilia.style.display = "none";
             }
         }
     </script>
