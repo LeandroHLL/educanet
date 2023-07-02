@@ -1,4 +1,5 @@
-<?php   
+<?php
+Session_start();
 // Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
@@ -11,23 +12,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
-
-// Consulta os cursos disponíveis no banco de dados
-$sql = "SELECT cod_curso, nome_curso FROM curso";
-$result = $conn->query($sql);
-
-// Obtém o ID do curso selecionado (se existir)
-$selectedCurso = isset($_GET['curso']) ? $_GET['curso'] : '';
-
-// Obtém o nome do curso selecionado (se existir)
-$selectedCursoNome = '';
-if (!empty($selectedCurso)) {
-    $sqlCurso = "SELECT nome_curso FROM curso WHERE cod_curso = $selectedCurso";
-    $resultCurso = $conn->query($sqlCurso);
-    if ($resultCurso->num_rows > 0) {
-        $rowCurso = $resultCurso->fetch_assoc();
-        $selectedCursoNome = $rowCurso['nome_curso'];
-    }
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    header("Location: ../sign/login.php");
 }
 ?>
 
@@ -59,6 +47,19 @@ if (!empty($selectedCurso)) {
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
+                <style>
+                    .ola {
+                        color: white
+                    }
+                </style>
+                <?php if (isset($username)) : ?>
+                    <a>
+                        <li class="username">
+                            <span class="ola">Olá </span>
+                            <?php echo $username; ?>
+                        </li>
+                    </a>
+                <?php endif; ?>
                 <li><a href="index.html">Home</a></li>
                 <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
@@ -67,7 +68,6 @@ if (!empty($selectedCurso)) {
                     </ul>
                 </li>
                 <li><a href="index.html/#section4">Cursos</a></li>
-                <li><a href="#section3">Logar</a></li>
             </ul>
         </nav>
     </header>
@@ -85,7 +85,8 @@ if (!empty($selectedCurso)) {
                 <br>
                 <br>
                 <br>
-                <br><div class="col-md-12">
+                <br>
+                <div class="col-md-12">
                     <div class="right-content">
                         <div class="top-content">
                             <h6>Cadastrado com sucesso<br>
@@ -104,7 +105,7 @@ if (!empty($selectedCurso)) {
                 <br>
                 <br>
                 <br>
-                
+
             </div>
         </div>
     </section>

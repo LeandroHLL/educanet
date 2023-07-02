@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
 //SESSÂO 
-if(isset($_SESSION['username'])) {
+if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
 } else {
     header("Location: ../sign/login.php");
@@ -54,7 +54,7 @@ if(isset($_SESSION['username'])) {
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
-            <style>
+                <style>
                     .ola {
                         color: white
                     }
