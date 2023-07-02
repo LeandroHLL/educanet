@@ -70,8 +70,9 @@ $result3 = $conn->query($sql3);
                     .ola {
                         color: white
                     }
-                    .username{
-                        color:#F29727
+
+                    .username {
+                        color: #F29727
                     }
                 </style>
                 <?php if (isset($username)) : ?>
@@ -292,14 +293,14 @@ $result3 = $conn->query($sql3);
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <select name="possui_alergia" id="possui_alergia" class="form-control" required="">
+                                        <select name="possui_alergia" id="possui_alergia" class="form-control" required="" onchange="mostrarCampoQualAlergia()">
                                             <option value="">Possui Alergia?</option>
                                             <option value="Sim">Sim</option>
                                             <option value="Não">Não</option>
                                         </select>
                                     </fieldset>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="campo_qual_alergia" style="visibility: hidden;">
                                     <fieldset><br>
                                         <input name="qual_alergia" type="text" class="form-control" id="qual_alergia" placeholder="Qual Alergia" required="">
                                     </fieldset>
@@ -396,6 +397,18 @@ $result3 = $conn->query($sql3);
     </footer>
 
     <!-- Scripts -->
+    <script>
+        function mostrarCampoQualAlergia() {
+            var possuiAlergia = document.getElementById("possui_alergia").value;
+            var campoQualAlergia = document.getElementById("campo_qual_alergia");
+
+            if (possuiAlergia === "Sim") {
+                campoQualAlergia.style.visibility = "visible";
+            } else {
+                campoQualAlergia.style.visibility = "hidden";
+            }
+        }
+    </script>
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
