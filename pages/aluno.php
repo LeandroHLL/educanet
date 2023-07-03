@@ -96,6 +96,13 @@ $result3 = $conn->query($sql3);
     </header>
 
     <section class="section coming-soon" data-section="section3">
+        <style>
+            section.coming-soon{
+                background-image: url(../assets/images/choosing-bg.jpg);
+                background-size: cover;
+                background-color: #172238;
+            }
+        </style>
         <div class="container">
             <div class="row justify-content-center">
                 <!-- LOGAR -->

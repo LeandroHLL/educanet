@@ -95,6 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </header>
 
     <section class="section coming-soon" data-section="section3">
+    <style>
+            section.coming-soon{
+                background-image: url(../assets/images/main-slider-02.jpg);
+                background-size: cover;
+                background-color: #172238;
+            }
+        </style>
         <br>
         <br>
         <br>

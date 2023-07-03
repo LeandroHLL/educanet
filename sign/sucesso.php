@@ -116,6 +116,13 @@ if (isset($_SESSION['username'])) {
     </header>
 
     <section class="section coming-soon" data-section="section3">
+    <style>
+            section.coming-soon{
+                background-image: url(../assets/images/main-slider-01.jpg);
+                background-size: cover;
+                background-color: #172238;
+            }
+        </style>
         <div class="container">
             <div class="row">
                 <!-- USUÁRIO LOGADO -->
