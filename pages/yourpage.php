@@ -108,9 +108,9 @@ if (isset($_SESSION['username'])) {
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="index.html/#section4">Cursos</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
-                    <li><a href="logout.php" rel="sponsored" class="external">Logout</a></li>
+                    <li><a href="../sign/logout.php" rel="sponsored" class="external">Logout</a></li>
                 <?php else : ?>
-                    <li><a href="login.php">Logar</a></li> <!-- Botão de Logar -->
+                    <li><a href="../sign/logout.php">Logar</a></li> <!-- Botão de Logar -->
                 <?php endif; ?>
             </ul>
         </nav>
