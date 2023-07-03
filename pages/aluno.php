@@ -83,7 +83,11 @@ $result3 = $conn->query($sql3);
                         </li>
                     </a>
                 <?php endif; ?>
-                <li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>
+
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === $username) {
+                    echo '<li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>';
+                } ?>
+
                 <li><a href="../index.html">Home</a></li>
                 <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
@@ -98,7 +102,7 @@ $result3 = $conn->query($sql3);
 
     <section class="section coming-soon" data-section="section3">
         <style>
-            section.coming-soon{
+            section.coming-soon {
                 background-image: url(../assets/images/choosing-bg.jpg);
                 background-size: cover;
                 background-color: #172238;

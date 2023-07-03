@@ -104,7 +104,9 @@ if (isset($_SESSION['username'])) {
                         color:#F29727
                     }
                 </style>
-                <li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === $username) {
+                    echo '<li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>';
+                } ?>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="index.html/#section4">Cursos</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
