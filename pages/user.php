@@ -51,6 +51,10 @@ if (isset($_SESSION['username'])) {
                     .ola {
                         color: white
                     }
+
+                    .username {
+                        color: #F29727
+                    }
                 </style>
                 <?php if (isset($username)) : ?>
                     <a>
@@ -74,8 +78,23 @@ if (isset($_SESSION['username'])) {
 
     <section class="section coming-soon" data-section="section3">
         <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <div class="row">
                 <!-- CURSO ESCOLHIDO -->
+
+
+                <br>
+                <br>
+                <br>
+                <br>
                 <br>
                 <br>
                 <br>
@@ -95,16 +114,6 @@ if (isset($_SESSION['username'])) {
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
 
             </div>
         </div>
