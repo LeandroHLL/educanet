@@ -86,8 +86,9 @@ if (isset($_SESSION['username'])) {
                     .ola {
                         color: white
                     }
-                    .username{
-                        color:#F29727
+
+                    .username {
+                        color: #F29727
                     }
                 </style>
                 <?php if (isset($username)) : ?>
@@ -98,13 +99,13 @@ if (isset($_SESSION['username'])) {
                         </li>
                     </a>
                 <?php endif; ?>
+                <style>
+                    .external{
+                        color:#F29727
+                    }
+                </style>
+                <li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>
                 <li><a href="../index.html">Home</a></li>
-                <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
-                    <ul class="sub-menu">
-                        <li><a href="index.html#section2">Quem Somos?</a></li>
-                        <li><a href="index.html#section3">Cadastre-se</a></li>
-                    </ul>
-                </li>
                 <li><a href="index.html/#section4">Cursos</a></li>
                 <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
                     <li><a href="logout.php" rel="sponsored" class="external">Logout</a></li>
@@ -116,8 +117,8 @@ if (isset($_SESSION['username'])) {
     </header>
 
     <section class="section coming-soon" data-section="section3">
-    <style>
-            section.coming-soon{
+        <style>
+            section.coming-soon {
                 background-image: url(../assets/images/main-slider-01.jpg);
                 background-size: cover;
                 background-color: #172238;

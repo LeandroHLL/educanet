@@ -43,7 +43,7 @@ $result3 = $conn->query($sql3);
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>EducaNet | Cadastro</title>
+    <title>EducaNet | Formulário de Aluno</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -83,6 +83,7 @@ $result3 = $conn->query($sql3);
                         </li>
                     </a>
                 <?php endif; ?>
+                <li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>
                 <li><a href="../index.html">Home</a></li>
                 <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
