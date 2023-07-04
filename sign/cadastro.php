@@ -3,6 +3,7 @@
 
 session_start();
 
+$error = isset($_GET['error']) ? $_GET['error'] : '';
 // Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
@@ -78,21 +79,10 @@ $result = $conn->query($sql);
                         <div class="top-content">
                             <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
                         </div>
-                        <?php
-                        try {
-                            // Código para inserir o registro no banco de dados
-                        } catch (mysqli_sql_exception $e) {
-                            $errorMessage = $e->getMessage();
-
-                            if (strpos($errorMessage, "Duplicate entry") !== false && strpos($errorMessage, "email") !== false) {
-                                // Exibir a mensagem de e-mail já utilizado na tela de cadastro
-                                echo "O e-mail informado já está sendo utilizado. Por favor, escolha outro e-mail.";
-                            } else {
-                                // Outra exceção ocorreu, exibir mensagem genérica de erro
-                                echo "Ocorreu um erro durante o cadastro. Por favor, tente novamente mais tarde.";
-                            }
-                        }
-                        ?>  
+                        <!--Tratamento de erro, pois somente o email vai ser usado para diferenciar um usuario de outro -->
+                        <?php if (!empty($error) && $error == 'email_exists') : ?>
+                            <div class="error-message" style="color: red;">O email já está sendo utilizado. Por favor, escolha outro email.</div>
+                        <?php endif; ?>
                         <form id="registration-form" action="../back/cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
