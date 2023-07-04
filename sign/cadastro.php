@@ -35,13 +35,13 @@ $result = $conn->query($sql);
     <title>EducaNet | Cadastro</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-grad-school.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../assets/css/templatemo-grad-school.css">
+    <link rel="stylesheet" href="../assets/css/owl.css">
+    <link rel="stylesheet" href="../assets/css/lightbox.css">
 </head>
 
 <body>
@@ -50,20 +50,20 @@ $result = $conn->query($sql);
     <!--header-->
     <header class="main-header clearfix" role="header">
         <div class="logo">
-            <a href="index.html"><em>Educa</em> Net</a>
+            <a href="../index.html"><em>Educa</em> Net</a>
         </div>
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
-                <li><a href="index.html">Home</a></li>
-                <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
+                <li><a href="../index.html">Home</a></li>
+                <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
-                        <li><a href="index.html#section2">Quem Somos?</a></li>
-                        <li><a href="index.html#section3">Cadastre-se</a></li>
+                        <li><a href="../index.html#section2">Quem Somos?</a></li>
+                        <li><a href="../index.html#section3">Cadastre-se</a></li>
                     </ul>
                 </li>
-                <li><a href="index.html/#section4">Cursos</a></li>
-                <li><a href="#section3">Logar</a></li>
+                <li><a href="../index.html/#section4">Cursos</a></li>
+                <li><a href="../#section3">Logar</a></li>
             </ul>
         </nav>
     </header>
@@ -78,7 +78,22 @@ $result = $conn->query($sql);
                         <div class="top-content">
                             <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
                         </div>
-                        <form id="registration-form" action="back/cadastro.php" method="post">
+                        <?php
+                        try {
+                            // Código para inserir o registro no banco de dados
+                        } catch (mysqli_sql_exception $e) {
+                            $errorMessage = $e->getMessage();
+
+                            if (strpos($errorMessage, "Duplicate entry") !== false && strpos($errorMessage, "email") !== false) {
+                                // Exibir a mensagem de e-mail já utilizado na tela de cadastro
+                                echo "O e-mail informado já está sendo utilizado. Por favor, escolha outro e-mail.";
+                            } else {
+                                // Outra exceção ocorreu, exibir mensagem genérica de erro
+                                echo "Ocorreu um erro durante o cadastro. Por favor, tente novamente mais tarde.";
+                            }
+                        }
+                        ?>  
+                        <form id="registration-form" action="../back/cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <fieldset>
@@ -163,16 +178,16 @@ $result = $conn->query($sql);
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="assets/js/isotope.min.js"></script>
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/lightbox.js"></script>
-    <script src="assets/js/tabs.js"></script>
-    <script src="assets/js/video.js"></script>
-    <script src="assets/js/slick-slider.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="../assets/js/isotope.min.js"></script>
+    <script src="../assets/js/owl-carousel.js"></script>
+    <script src="../assets/js/lightbox.js"></script>
+    <script src="../assets/js/tabs.js"></script>
+    <script src="../assets/js/video.js"></script>
+    <script src="../assets/js/slick-slider.js"></script>
+    <script src="../assets/js/custom.js"></script>
     <script>
         //according to loftblog tut
         $('.nav li:first').addClass('active');

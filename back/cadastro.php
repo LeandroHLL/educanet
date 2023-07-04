@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
@@ -40,7 +41,7 @@ if ($conn->query($sql) === true) {
 
         // Atualiza a coluna 'autenticacao' na tabela 'cadastro' com o valor obtido da consulta SQL
 
-       
+
 
         $autenticacao = $row['autenticacao'];
         $updateQuery = "UPDATE cadastro SET autenticacao = '$autenticacao' WHERE username = '$username'";
@@ -50,15 +51,14 @@ if ($conn->query($sql) === true) {
 
         $updateSenhaQuery = "UPDATE senha SET situacao = 'UTILIZADA' WHERE autenticacao = '$autenticacao'";
         $conn->query($updateSenhaQuery);
-        
+
         header("Location: ../pages/user.php");
     } else {
-        header("Location: ../login.php?error=1");
+        header("Location: ../sign/cadastro.php?error=1");
     }
 } else {
-    header("Location: ../login.php?error=1");
+    header("Location: ../sign/login.php?error=1");
 }
 
 // Fecha a conexão com o banco de dados
 $conn->close();
-?>

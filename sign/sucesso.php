@@ -1,6 +1,15 @@
 <?php
-Session_start();
-// Conexão com o banco de dados
+// Iniciar sessão
+session_start();
+
+// Verificar se o usuário está logado
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    // Se o usuário não estiver logado, redirecionar para a página de login
+    header("Location: ../sign/login.php");
+    exit();
+}
+
+// Estabelecer conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -8,14 +17,40 @@ $dbname = "educanet";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica se a conexão foi estabelecida corretamente
+// Verificar se a conexão foi estabelecida corretamente
 if ($conn->connect_error) {
     die("Falha na conexão com o banco de dados: " . $conn->connect_error);
 }
+
+// Obtém o nome do usuário da sessão
+$username = $_SESSION['username'];
+//Curso selecionado com base no nome do usuário da sessão
+$selectedCursoNome = '';
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
-} else {
-    header("Location: ../sign/login.php");
+
+    $sqlCurso = "SELECT c.nome_curso
+                 FROM cadastro AS cad
+                 JOIN curso AS c ON cad.curso = c.cod_curso
+                 WHERE cad.username = '$username'";
+
+    $resultCurso = $conn->query($sqlCurso);
+
+    if ($resultCurso->num_rows > 0) {
+        $rowCurso = $resultCurso->fetch_assoc();
+        $selectedCursoNome = $rowCurso['nome_curso'];
+    }
+}
+
+// Obtém a autenticação do usuário logado na sessão
+$autenticacao = '';
+if (isset($_SESSION['username'])) {
+    $sqlAutenticacao = "SELECT autenticacao FROM cadastro WHERE username = '{$_SESSION['username']}'";
+    $resultAutenticacao = $conn->query($sqlAutenticacao);
+    if ($resultAutenticacao->num_rows > 0) {
+        $rowAutenticacao = $resultAutenticacao->fetch_assoc();
+        $autenticacao = $rowAutenticacao['autenticacao'];
+    }
 }
 ?>
 
@@ -28,7 +63,7 @@ if (isset($_SESSION['username'])) {
     <meta name="description" content="">
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <title>EducaNet | Cadastrado</title>
+    <title>EducaNet | Página do candidato </title>
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Additional CSS Files -->
@@ -64,57 +99,72 @@ if (isset($_SESSION['username'])) {
                         </li>
                     </a>
                 <?php endif; ?>
+                <style>
+                    .external{
+                        color:#F29727
+                    }
+                </style>
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === $username) {
+                    echo '<li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>';
+                } ?>
                 <li><a href="../index.html">Home</a></li>
-                <li class="has-submenu"><a href="../index.html#section2">Sobre Nós</a>
-                    <ul class="sub-menu">
-                        <li><a href="../index.html#section2">Quem Somos?</a></li>
-                        <li><a href="../index.html#section3">Cadastre-se</a></li>
-                    </ul>
-                </li>
-                <li><a href="../index.html/#section4">Cursos</a></li>
+                <li><a href="index.html/#section4">Cursos</a></li>
+                <?php if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) : ?>
+                    <li><a href="logout.php" rel="sponsored" class="external">Logout</a></li>
+                <?php else : ?>
+                    <li><a href="login.php">Logar</a></li> <!-- Botão de Logar -->
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
 
     <section class="section coming-soon" data-section="section3">
+        <style>
+            section.coming-soon {
+                background-image: url(../assets/images/main-slider-01.jpg);
+                background-size: cover;
+                background-color: #172238;
+            }
+        </style>
         <div class="container">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <div class="row">
-                <!-- CURSO ESCOLHIDO -->
-
-
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <!-- USUÁRIO LOGADO -->
                 <div class="col-md-12">
                     <div class="right-content">
                         <div class="top-content">
-                            <h6>Cadastrado com sucesso<br>
-                                <a href="../sign/login.php" class="button">Volte a fazer Login para iniciar sessão.</a>
+                            <style>
+                                .cor-V {
+                                    color: #F29727
+                                }
+                            </style>
+                            <!-- Exibição para usuario informações sql e de sessão -->
+                            <h6>Usuário Logado:<p class="cor-V"> <?php echo $username; ?></p>
+                                <a href="../pages/aluno.php" class="button">Continue seu Cadastro</a>
                             </h6>
+                            <h6>Curso Escolhido:<p class="cor-V"><?php echo $selectedCursoNome; ?></p>
+                            </h6>
+                            <h6>Sua Senha:<p style="color: <?php echo (!empty($autenticacao) ? 'inherit' : 'yellow'); ?>"><?php echo (!empty($autenticacao) ? $autenticacao : 'Nenhuma senha disponível no momento, breve abriremos novas turmas'); ?></p>
+                            </h6>
+                            <style>
+                                .red-button {
+                                    background-color: red;
+                                    color: white;
+                                    padding: 10px 20px;
+                                    border: none;
+                                    text-align: center;
+                                    display: inline-block;
+                                    font-size: 16px;
+                                    border-radius: 4px;
+                                    text-decoration: none;
+                                    cursor: pointer;
+                                }
+                            </style>
+                            <br>
+                            <br>
                         </div>
+                        <a href="logout.php" class="red-button">Sair</a> <!-- Botão de logout -->
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
