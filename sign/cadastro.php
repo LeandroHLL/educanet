@@ -20,6 +20,12 @@ if ($conn->connect_error) {
 // Consulta os cursos disponíveis no banco de dados
 $sql = "SELECT cod_curso, nome_curso FROM curso";
 $result = $conn->query($sql);
+
+if (isset($_GET['curso'])) {
+    $cursoSelecionado = $_GET['curso'];
+} else {
+    $cursoSelecionado = ""; // Valor padrão se nenhum curso for selecionado
+}
 ?>
 
 <!DOCTYPE html>
@@ -118,7 +124,12 @@ $result = $conn->query($sql);
                                                 while ($row = $result->fetch_assoc()) {
                                                     $idCurso = $row["cod_curso"];
                                                     $nomeCurso = $row["nome_curso"];
-                                                    echo "<option value='$idCurso'>$nomeCurso</option>";
+
+                                                    if ($nomeCurso == $cursoSelecionado) {
+                                                        echo "<option value='$idCurso' selected>$nomeCurso</option>";
+                                                    } else {
+                                                        echo "<option value='$idCurso'>$nomeCurso</option>";
+                                                    }
                                                 }
                                             } else {
                                                 echo "<option value=''>Nenhum curso disponível</option>";
