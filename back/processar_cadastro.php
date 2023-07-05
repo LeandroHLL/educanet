@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($conn->query($sql) === true) {
         echo "Concluido com Sucesso.";
-        header("Location: pages/yourpage.php");
+        header("Location: ../pages/yourpage.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
