@@ -128,7 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                     #password {
                                         background-color: #1A2A40;
-                                        /* Amarelo */
                                     }
                                 </style>
                                 <div class="col-md-12">

@@ -85,10 +85,6 @@ if (isset($_GET['curso'])) {
                         <div class="top-content">
                             <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
                         </div>
-                        <!--Tratamento de erro, pois somente o email vai ser usado para diferenciar um usuario de outro -->
-                        <?php if (!empty($error) && $error == 'email_exists') : ?>
-                            <div class="error-message" style="color: red;">O email já está sendo utilizado. Por favor, escolha outro email.</div>
-                        <?php endif; ?>
                         <form id="registration-form" action="../back/cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
@@ -145,6 +141,10 @@ if (isset($_GET['curso'])) {
                                             $conn->close();
                                             ?>
                                         </select>
+                                        <!--Tratamento de erro, pois somente o email vai ser usado para diferenciar um usuario de outro -->
+                                        <?php if (!empty($error) && $error == 'email_exists') : ?>
+                                            <div class="error-message" style="color: red;">O email já está sendo utilizado. Por favor, escolha outro email.</div>
+                                        <?php endif; ?>
                                     </fieldset>
                                 </div>
 

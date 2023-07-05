@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <section class="section coming-soon" data-section="section3">
         <style>
-            section.coming-soon{
+            section.coming-soon {
                 background-image: url(../assets/images/main-slider-02.jpg);
                 background-size: cover;
                 background-color: #172238;
@@ -113,18 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="top-content">
                             <h6>Faça login em sua conta</h6>
                         </div>
-                        <?php
-                        // Verifica se há um erro na URL/tratamento de erros
-                        if (isset($_GET['error'])) {
-                            $error = $_GET['error'];
-
-                            if ($error == 1) {
-                                echo "<p style='color: red;'>Usuário ou senha inválidos!</p>";
-                            } else {
-                                echo "<p style='color: red;'>Ocorreu um erro no login.</p>";
-                            }
-                        }
-                        ?>
                         <form id="login-form" action="" method="post">
                             <div class="row">
                                 <div class="col-md-12">
@@ -140,6 +128,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="col-md-12">
                                     <fieldset>
                                         <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
+                                        <?php
+                                        // Verifica se há um erro na URL/tratamento de erros
+                                        if (isset($_GET['error'])) {
+                                            $error = $_GET['error'];
+
+                                            if ($error == 1) {
+                                                echo "<p style='color: red;'>Usuário ou senha inválidos!</p>";
+                                            } else {
+                                                echo "<p style='color: red;'>Ocorreu um erro no login.</p>";
+                                            }
+                                        }
+                                        ?>
                                     </fieldset>
                                 </div>
                                 <br>
