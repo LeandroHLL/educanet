@@ -1,3 +1,0 @@
-// Atualiza a disponibilidade da senha para 'indisponível' na tabela 'senha'
-$updateSenhaQuery = "UPDATE senha SET situacao = 'INDISPONIVEL' WHERE autenticacao = '$autenticacao'";
-$conn->query($updateSenhaQuery);
