@@ -359,7 +359,7 @@ $result3 = $conn->query($sql3);
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <input name="numero_cnis" type="number" class="form-control" id="numero_cnis" placeholder="Número do Cnis" required="">
+                                        <input name="numero_cnis" type="number" class="form-control" id="numero_cnis" placeholder="Número do Cnis" >
                                     </fieldset>
                                 </div>
                                 <div class="col-md-12">
