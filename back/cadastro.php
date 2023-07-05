@@ -19,6 +19,7 @@ $password = $_POST['password'];
 $email = $_POST['email'];
 $age = $_POST['age'];
 $phone_number = $_POST['phone-number'];
+$securityAnswer = $_POST['security-question'];
 $curso = $_POST['curso'];
 
 // Verifica se o email já está sendo utilizado
@@ -32,8 +33,8 @@ if ($emailExistsResult->num_rows > 0) {
 }
 
 // Prepara a instrução SQL para inserir os dados no banco de dados
-$sql = "INSERT INTO cadastro (username, password, email, age, phone_number, curso)
-        VALUES ('$username', '$password', '$email', '$age', '$phone_number', '$curso')";
+$sql = "INSERT INTO cadastro (username, password, email, age, phone_number, security_answer, curso)
+        VALUES ('$username', '$password', '$email', '$age', '$phone_number','$securityAnswer' ,'$curso')";
 
 if ($conn->query($sql) === true) {
     // Executa a consulta SQL para obter os dados de autenticação e cod_curso

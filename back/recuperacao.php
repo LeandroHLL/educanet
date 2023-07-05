@@ -1,53 +1,36 @@
 <?php
-// Iniciar sessão
-session_start();
+// Conexão com o banco de dados (substitua as credenciais de acordo com o seu ambiente)
+$conn = new mysqli("localhost", "root", "", "educanet");
 
-// Conexão com o banco de dados
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "educanet";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verifica se a conexão foi estabelecida corretamente
+// Verifique se houve algum erro na conexão
 if ($conn->connect_error) {
-    die("Falha na conexão com o banco de dados: " . $conn->connect_error);
+    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
 }
 
-// Função para verificar o login
-function verificaLogin($conn, $username, $password)
-{
-    // Consulta SQL para verificar o usuário e a senha no banco de dados
-    $sql = "SELECT * FROM cadastro WHERE username = '$username' AND password = '$password'";
+// Verifique se o formulário de recuperação de senha foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $securityAnswer = $_POST['security-answer'];
+
+    // Consulta para obter a senha correspondente ao email e à resposta de segurança fornecidos
+    $sql = "SELECT password FROM cadastro WHERE email = '$email' AND security_answer = '$securityAnswer'";
+
+    // Execute a consulta SQL
     $result = $conn->query($sql);
 
     if ($result->num_rows == 1) {
-        // Login bem-sucedido, definir variáveis de sessão
+        // A resposta de segurança e o email estão corretos, exiba a senha
         $row = $result->fetch_assoc();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $row['username'];
-
-        // Redirecionar para a página de sucesso após o login
-        header("Location: sucesso.php");
-        exit();
+        $password = $row['password'];
     } else {
-        // Login inválido, redirecionar para a página de login com um erro
-        header("Location: login.php?error=1");
-        exit();
+        // A resposta de segurança e/ou o email estão incorretos
+        $error = "As informações fornecidas estão incorretas. Por favor, tente novamente.";
     }
-}
 
-// Verificar se o formulário de login foi enviado
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Chamar a função de verificação de login
-    verificaLogin($conn, $username, $password);
+    // Feche a conexão com o banco de dados
+    $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -59,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>EducaNet | Login</title>
+    <title>EducaNet | Esqueci a Senha</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -96,8 +79,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <section class="section coming-soon" data-section="section3">
         <style>
-            section.coming-soon{
-                background-image: url(../assets/images/main-slider-02.jpg);
+            section.coming-soon {
+                background-image: url(../assets/images/choosing-bg.jpg);
                 background-size: cover;
                 background-color: #172238;
             }
@@ -111,55 +94,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="col-md-6">
                     <div class="right-content">
                         <div class="top-content">
-                            <h6>Faça login em sua conta</h6>
+                            <h6>Obtenha sua Senha novamente</h6>
                         </div>
                         <?php
-                        // Verifica se há um erro na URL/tratamento de erros
-                        if (isset($_GET['error'])) {
-                            $error = $_GET['error'];
-
-                            if ($error == 1) {
-                                echo "<p style='color: red;'>Usuário ou senha inválidos!</p>";
-                            } else {
-                                echo "<p style='color: red;'>Ocorreu um erro no login.</p>";
-                            }
-                        }
                         ?>
                         <form id="login-form" action="" method="post">
                             <div class="row">
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <input name="username" type="text" class="form-control" id="username" placeholder="Usuário" required="">
+                                        <input name="email" type="text" class="form-control" id="email" placeholder="Email cadastrado" required="">
                                     </fieldset>
                                 </div>
-                                <br>
                                 <br>
                                 <br>
                                 <br>
 
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
+                                        <input name="security-answer" type="text" class="form-control" id="security-answer" placeholder="Qual é o nome do seu animal de estimação?" required="">
                                     </fieldset>
                                 </div>
                                 <br>
                                 <br>
                                 <br>
+                                <style>
+                                    .error {
+                                        background-color: #ff0000;
+                                    }
+
+                                    .error-message {
+                                        color: #ff0000;
+                                    }
+
+                                    #password {
+                                        background-color: #1A2A40;
+                                        /* Amarelo */
+                                    }
+                                </style>
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <button type="submit" id="login-submit" class="button">Logar</button>
+                                        <input name="password" type="text" class="form-control <?php echo isset($error) ? 'error' : ''; ?>" id="password" placeholder="Sua Senha" value="<?php echo isset($password) ? $password : ''; ?>" disabled>
+                                        <?php
+                                        if (isset($error)) {
+                                            echo "<p class='error-message'>$error</p>";
+                                        }
+                                        ?>
                                     </fieldset>
                                 </div>
-                                <br>
-                                <br>
-                                <br>
+
                                 <div class="col-md-12">
                                     <fieldset>
-                                        <a href="../back/recuperacao.php" class="button">Esqueceu a Senha?</a><br>
-                                        <a href="cadastro.php" class="button">Não é cadastrado? se cadastre.</a>
+                                        <button type="submit" id="login-submit" class="button">Recuperar Senha</button>
                                     </fieldset>
                                 </div>
+                                <br>
+                                <br>
+                                <br>
                             </div>
+                            <a href="../sign/login.php" class="button">Volte a Fazer Login</a><br>
                     </div>
                     </form>
                 </div>

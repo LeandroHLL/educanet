@@ -118,6 +118,12 @@ if (isset($_GET['curso'])) {
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
+                                        <input name="security-question" type="text" class="form-control" id="security-question" placeholder="Qual é o nome do seu animal de estimação?" required="">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <fieldset>
                                         <select name="curso" class="form-control" id="curso" required="">
                                             <?php
                                             if ($result->num_rows > 0) {
