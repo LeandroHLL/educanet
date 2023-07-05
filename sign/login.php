@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <h6>Faça login em sua conta</h6>
                         </div>
                         <?php
-                        // Verifica se há um erro na URL
+                        // Verifica se há um erro na URL/tratamento de erros
                         if (isset($_GET['error'])) {
                             $error = $_GET['error'];
 
@@ -163,7 +163,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </form>
                 </div>
             </div>
-            <!-- CADASTRO -->
         </div>
         </div>
     </section>

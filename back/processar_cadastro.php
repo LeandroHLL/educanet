@@ -53,11 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             VALUES ('$name', '$date', '$father', '$mother', '$sex', '$rg', '$cpf', '$telefone_residencial', '$telefone_celular', '$email', '$tipo_sanguineo', '$estado_civil', '$serie', '$cod_escola', '$cod_escolaridade', '$manequim', '$numero_calcado', '$endereco', '$cod_bairro', '$possui_alergia', '$qual_alergia', '$portador_pne', '$qual_pne', '$medicacao_controlada', '$qual_medicacao', '$possui_bolsa_familia', '$numero_bolsa_familia', '$numero_cnis', '$renda_familiar')";
 
     if ($conn->query($sql) === true) {
-        echo "Data inserted successfully.";
+        echo "Concluido com Sucesso.";
+        header("Location: pages/yourpage.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     $conn->close();
 }
-?>

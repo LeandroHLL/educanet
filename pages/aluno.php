@@ -21,7 +21,7 @@ if (isset($_SESSION['username'])) {
 } else {
     header("Location: ../sign/login.php");
 }
-// EU VOU ME MATAR ESSE SABADO :D
+// Puxa do banco os ids :D
 $sql1 = "SELECT cod_escolaridade, nome_escolaridade FROM escolaridade";
 $result1 = $conn->query($sql1);
 
@@ -110,8 +110,6 @@ $result3 = $conn->query($sql3);
         </style>
         <div class="container">
             <div class="row justify-content-center">
-                <!-- LOGAR -->
-                <!-- CADASTRO -->
                 <div class="col-md-6">
                     <div class="right-content">
                         <div class="top-content">
