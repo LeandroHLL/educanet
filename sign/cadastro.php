@@ -3,6 +3,7 @@
 
 session_start();
 
+$error = isset($_GET['error']) ? $_GET['error'] : '';
 // Conexão com o banco de dados
 $servername = "localhost";
 $username = "root";
@@ -19,6 +20,12 @@ if ($conn->connect_error) {
 // Consulta os cursos disponíveis no banco de dados
 $sql = "SELECT cod_curso, nome_curso FROM curso";
 $result = $conn->query($sql);
+
+if (isset($_GET['curso'])) {
+    $cursoSelecionado = $_GET['curso'];
+} else {
+    $cursoSelecionado = ""; // Valor padrão se nenhum curso for selecionado
+}
 ?>
 
 <!DOCTYPE html>
@@ -78,21 +85,6 @@ $result = $conn->query($sql);
                         <div class="top-content">
                             <h6>Crie sua conta para ter acesso gratuito aos cursos</h6>
                         </div>
-                        <?php
-                        try {
-                            // Código para inserir o registro no banco de dados
-                        } catch (mysqli_sql_exception $e) {
-                            $errorMessage = $e->getMessage();
-
-                            if (strpos($errorMessage, "Duplicate entry") !== false && strpos($errorMessage, "email") !== false) {
-                                // Exibir a mensagem de e-mail já utilizado na tela de cadastro
-                                echo "O e-mail informado já está sendo utilizado. Por favor, escolha outro e-mail.";
-                            } else {
-                                // Outra exceção ocorreu, exibir mensagem genérica de erro
-                                echo "Ocorreu um erro durante o cadastro. Por favor, tente novamente mais tarde.";
-                            }
-                        }
-                        ?>  
                         <form id="registration-form" action="../back/cadastro.php" method="post">
                             <div class="row">
                                 <div class="col-md-12">
@@ -122,13 +114,24 @@ $result = $conn->query($sql);
                                 </div>
                                 <div class="col-md-12">
                                     <fieldset>
+                                        <input name="security-question" type="text" class="form-control" id="security-question" placeholder="Qual é o nome do seu animal de estimação?" required="">
+                                    </fieldset>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <fieldset>
                                         <select name="curso" class="form-control" id="curso" required="">
                                             <?php
                                             if ($result->num_rows > 0) {
                                                 while ($row = $result->fetch_assoc()) {
                                                     $idCurso = $row["cod_curso"];
                                                     $nomeCurso = $row["nome_curso"];
-                                                    echo "<option value='$idCurso'>$nomeCurso</option>";
+
+                                                    if ($nomeCurso == $cursoSelecionado) {
+                                                        echo "<option value='$idCurso' selected>$nomeCurso</option>";
+                                                    } else {
+                                                        echo "<option value='$idCurso'>$nomeCurso</option>";
+                                                    }
                                                 }
                                             } else {
                                                 echo "<option value=''>Nenhum curso disponível</option>";
@@ -138,6 +141,10 @@ $result = $conn->query($sql);
                                             $conn->close();
                                             ?>
                                         </select>
+                                        <!--Tratamento de erro, pois somente o email vai ser usado para diferenciar um usuario de outro -->
+                                        <?php if (!empty($error) && $error == 'email_exists') : ?>
+                                            <div class="error-message" style="color: red;">O email já está sendo utilizado. Por favor, escolha outro email.</div>
+                                        <?php endif; ?>
                                     </fieldset>
                                 </div>
 

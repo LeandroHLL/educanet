@@ -1,4 +1,4 @@
-
+<!-- Ia ser responsavel por enviar mensagens por email, porém vou usar o mailto, para n ser necessário trocar o index de html para php -->
           <?php
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $name = $_POST['name'];

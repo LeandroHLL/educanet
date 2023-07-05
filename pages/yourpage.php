@@ -1,5 +1,6 @@
 <?php
 // Iniciar sessão
+//Tentando implementar sistema crud para que o usuário possa visualizar as mudanças feitas e editalas
 session_start();
 
 // Verificar se o usuário está logado

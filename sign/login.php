@@ -82,6 +82,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
+                <style>
+                    .ola {
+                        color: white;
+                    }
+
+                    .username {
+                        color: #F29727;
+                    }
+                </style>
+                <?php if (isset($_SESSION['username'])) : ?>
+                    <a>
+                        <li class="username">
+                            <span class="ola">Olá </span>
+                            <?php echo $_SESSION['username']; ?>
+                        </li>
+                    </a>
+                <?php endif; ?>
+                <style>
+                    .external {
+                        color: #F29727;
+                    }
+                </style>
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === $username) {
+                    echo '<li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>';
+                } ?>
                 <li><a href="../index.html">Home</a></li>
                 <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
@@ -95,8 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </header>
 
     <section class="section coming-soon" data-section="section3">
-    <style>
-            section.coming-soon{
+        <style>
+            section.coming-soon {
                 background-image: url(../assets/images/main-slider-02.jpg);
                 background-size: cover;
                 background-color: #172238;
@@ -113,18 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="top-content">
                             <h6>Faça login em sua conta</h6>
                         </div>
-                        <?php
-                        // Verifica se há um erro na URL
-                        if (isset($_GET['error'])) {
-                            $error = $_GET['error'];
-
-                            if ($error == 1) {
-                                echo "<p style='color: red;'>Usuário ou senha inválidos!</p>";
-                            } else {
-                                echo "<p style='color: red;'>Ocorreu um erro no login.</p>";
-                            }
-                        }
-                        ?>
                         <form id="login-form" action="" method="post">
                             <div class="row">
                                 <div class="col-md-12">
@@ -140,6 +153,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="col-md-12">
                                     <fieldset>
                                         <input name="password" type="password" class="form-control" id="password" placeholder="Senha" required="">
+                                        <?php
+                                        // Verifica se há um erro na URL/tratamento de erros
+                                        if (isset($_GET['error'])) {
+                                            $error = $_GET['error'];
+
+                                            if ($error == 1) {
+                                                echo "<p style='color: red;'>Usuário ou senha inválidos!</p>";
+                                            } else {
+                                                echo "<p style='color: red;'>Ocorreu um erro no login.</p>";
+                                            }
+                                        }
+                                        ?>
                                     </fieldset>
                                 </div>
                                 <br>
@@ -155,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <br>
                                 <div class="col-md-12">
                                     <fieldset>
+                                        <a href="../back/recuperacao.php" class="button">Esqueceu a Senha?</a><br>
                                         <a href="cadastro.php" class="button">Não é cadastrado? se cadastre.</a>
                                     </fieldset>
                                 </div>
@@ -163,7 +189,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </form>
                 </div>
             </div>
-            <!-- CADASTRO -->
         </div>
         </div>
     </section>
