@@ -33,10 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $numero_cnis = $_POST['numero_cnis'];
     $renda_familiar = $_POST['renda_familiar'];
 
-    // Perform any necessary data processing or validation
-
-    // Example: Store data in the database
-    // Replace with your own database connection code
     $servername = "localhost";
     $username = "root";
     $password = "";
