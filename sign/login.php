@@ -82,6 +82,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
         <nav id="menu" class="main-nav" role="navigation">
             <ul class="main-menu">
+                <style>
+                    .ola {
+                        color: white;
+                    }
+
+                    .username {
+                        color: #F29727;
+                    }
+                </style>
+                <?php if (isset($_SESSION['username'])) : ?>
+                    <a>
+                        <li class="username">
+                            <span class="ola">Olá </span>
+                            <?php echo $_SESSION['username']; ?>
+                        </li>
+                    </a>
+                <?php endif; ?>
+                <style>
+                    .external {
+                        color: #F29727;
+                    }
+                </style>
+                <?php if (isset($_SESSION['username']) && $_SESSION['username'] === $username) {
+                    echo '<li><a href="../pages/yourpage.php" rel="sponsored" class="external">Sua Página</a></li>';
+                } ?>
                 <li><a href="../index.html">Home</a></li>
                 <li class="has-submenu"><a href="index.html#section2">Sobre Nós</a>
                     <ul class="sub-menu">
